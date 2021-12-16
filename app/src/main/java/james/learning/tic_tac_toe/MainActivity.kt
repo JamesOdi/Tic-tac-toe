@@ -71,7 +71,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             arrayListOf("4", "5", "6")) or list.containsAll(
             arrayListOf("7", "8", "9")) or list.containsAll(
             arrayListOf("1", "5", "9")) or list.containsAll(
-            arrayListOf("3", "5", "7"))
+            arrayListOf("3", "5", "7")) or list.containsAll(
+            arrayListOf("1", "4", "7")) or list.containsAll(
+            arrayListOf("2", "5", "8")) or list.containsAll(
+            arrayListOf("3", "6", "9"))
     }
 
     private fun showDialog(text: String){
