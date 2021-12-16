@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var player1 : ArrayList<String>
     private lateinit var player2 : ArrayList<String>
     private var currentPlayer = 1
+    private lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,21 +80,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showDialog(text: String){
-        val dialog = Dialog(this)
+        dialog = Dialog(this)
         dialog.setCanceledOnTouchOutside(false)
         val dialogView = ResultDialogBinding.inflate(layoutInflater)
         dialog.setContentView(dialogView.root)
         dialog.window?.setLayout(getWindowWidth(), WindowManager.LayoutParams.WRAP_CONTENT)
         dialogView.resultText.text = text
-        dialogView.cancelButton.setOnClickListener {
-            clearView()
-            dialog.dismiss()
-        }
-        dialogView.playAgainButton.setOnClickListener {
-            clearView()
-            dialog.dismiss()
-        }
+        dialogView.cancelButton.dismissDialog()
+        dialogView.playAgainButton.dismissDialog()
         dialog.show()
+    }
+
+    private fun TextView.dismissDialog() {
+        this.setOnClickListener {
+            clearView()
+            dialog.dismiss()
+        }
     }
 
     private fun clearView() {
